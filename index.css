@@ -1,0 +1,35 @@
+body {
+    background-color: #6ab04c;
+      font-family: 'Nova Flat', cursive;
+  display: block;
+  height: 600px;
+  width: 98%;
+}
+h1 {
+    color: white;
+}
+p {
+    color: rgb(238, 228, 228);
+}
+#button {
+    height: 50;
+    width: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #000000;
+    border: none;
+    font-size: 20;
+}
+
+#button:hover {
+    background-color: gray;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

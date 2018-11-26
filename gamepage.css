@@ -1,0 +1,22 @@
+#container{
+    background-color: #badc58;
+    width: 600;
+    height: 600;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    justify-content: flex-start;
+    display: flex;
+}
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.dark{
+    background-color: #6ab04c;
+    color: white;
+}
+.light{
+    background-color: #badc58;
+    color: white;
+}
