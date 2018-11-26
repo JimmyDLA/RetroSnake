@@ -20,3 +20,7 @@ body{
     background-color: #badc58;
     color: white;
 }
+#snake{
+    background-color: red;
+    position: absolute;
+}
