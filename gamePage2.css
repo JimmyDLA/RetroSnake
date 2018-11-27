@@ -3,3 +3,13 @@ body{
     align-items: center;
     justify-content: center;
 }
+.container{
+    display: flex;
+    background-color: rgba(48, 51, 107,1.0);
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+#score{
+    color: white;
+}
