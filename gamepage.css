@@ -1,26 +1,31 @@
-#container{
-    background-color: #badc58;
-    width: 600;
-    height: 600;
-    flex-direction: row;
-    flex-wrap: wrap;    
-    justify-content: flex-start;
-    display: flex;
-}
 body{
     display: flex;
+    align-items: center;
     justify-content: center;
 }
-
-.dark{
-    background-color: #6ab04c;
+.container{
+    display: flex;
+    background-color: rgba(48, 51, 107,1.0);;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+#score{
     color: white;
 }
-.light{
-    background-color: #badc58;
-    color: white;
+#score{
+    font-family: sans-serif
 }
-#snake{
-    background-color: red;
+#gameoverCont{
+    display: none;
     position: absolute;
+    top: 23%;
+    left: 33%;
+}
+#againButton{
+    position: absolute;
+    top: 47%;
+    left: 44%;
+    height: 30px;
+    width: 100px;
 }

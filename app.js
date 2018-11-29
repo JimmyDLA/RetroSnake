@@ -53,13 +53,24 @@ document.addEventListener("DOMContentLoaded", function () {
         return false
     }
 
+    function gameover(){
+        let gameoverAlert = document.getElementById("gameoverCont");
+        gameoverAlert.style.display= "block";
+    }
+    
+    function restart(){
+        console.log("refresh");
+        
+        location.reload();
+    }
+
 
     function draw() {
         // ctx.drawImage(src, x, y, width, height);
         ctx.drawImage(ground, 0, 0, 608, 608);
 
         for(i=0; i < snake.length; i++){
-            ctx.fillStyle = (i == 0) ? "rgba(48,52,105, 0.8)":"yellow";
+            ctx.fillStyle = (i == 0) ? "rgba(48,52,105, 0.8)" :"rgba(249, 202, 36,1.0)";
             ctx.fillRect(snake[i].x, snake[i].y, box, box);
             ctx.strokeStyle = "white";
             ctx.strokeRect(snake[i].x, snake[i].y, box, box)
@@ -98,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
            console.log("GAME OVER!");
            
             clearInterval(startGame);
+            gameover();
         }
 
 
@@ -105,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }   
 
     
-    let startGame = setInterval(draw, 150);
+    let startGame = setInterval(draw, 200);
 
 
 
@@ -224,3 +236,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // drawBoxes();
 
 })
+function restart() {
+    console.log("refresh");
+
+    location.reload();
+}
