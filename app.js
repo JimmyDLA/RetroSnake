@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //add new image
     let ground = new Image();
     let apple = new Image();
-    ground.src = "checker board.png";
-    apple.src = "egg.png";
+    ground.src = "./public/checker board.png";
+    apple.src = "./public/egg.png";
 
     //add new audio
     // let audio = new Audio();
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
            console.log("GAME OVER!");
            
             clearInterval(startGame);
-            gameover();
+            // gameover();
         }
 
 
