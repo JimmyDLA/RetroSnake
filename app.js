@@ -1,5 +1,4 @@
 
-// document.addEventListener("DOMContentLoaded", game);
 let level;
 function game(){
     
