@@ -1,5 +1,8 @@
 
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", game);
+let level;
+function game(){
+    
     console.log("JS is running");
 
     //global variables
@@ -66,14 +69,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     function draw() {
+        console.log("draw");
+        
         // ctx.drawImage(src, x, y, width, height);
         ctx.drawImage(ground, 0, 0, 608, 608);
 
         for(i=0; i < snake.length; i++){
-            ctx.fillStyle = (i == 0) ? "rgba(48,52,105, 0.8)" :"rgba(249, 202, 36,1.0)";
-            ctx.fillRect(snake[i].x, snake[i].y, box, box);
-            ctx.strokeStyle = "white";
-            ctx.strokeRect(snake[i].x, snake[i].y, box, box)
+            //draw head of snake
+            if (i == 0) {
+                // the triangle
+                ctx.beginPath();
+
+                if (dir == undefined) {
+                    ctx.moveTo(snake[i].x + (box / 2), snake[i].y);
+                    ctx.lineTo(snake[i].x, snake[i].y + box);
+                    ctx.lineTo(snake[i].x + box, snake[i].y + box);
+                    ctx.closePath();
+                }
+             
+                //turn head UP
+                if (dir == "UP") {
+                    ctx.moveTo(snake[i].x + (box / 2), snake[i].y);
+                    ctx.lineTo(snake[i].x, snake[i].y + box);
+                    ctx.lineTo(snake[i].x + box, snake[i].y + box);
+                    ctx.closePath();
+                }
+
+                //turn head LEFT
+                if (dir == "LEFT") {
+                    ctx.moveTo(snake[i].x + box, snake[i].y);
+                    ctx.lineTo(snake[i].x + box, snake[i].y + box);
+                    ctx.lineTo(snake[i].x, snake[i].y + (box / 2));
+                    ctx.closePath();
+                }
+
+                //turn head RIGHT
+                if (dir == "RIGHT") {
+                    ctx.moveTo(snake[i].x, snake[i].y);
+                    ctx.lineTo(snake[i].x, snake[i].y + box);
+                    ctx.lineTo(snake[i].x + box, snake[i].y + (box / 2));
+                    ctx.closePath();
+                }
+                //turn head DOWN
+                if (dir == "DOWN") {
+                    ctx.moveTo(snake[i].x, snake[i].y);
+                    ctx.lineTo(snake[i].x + box, snake[i].y );
+                    ctx.lineTo(snake[i].x + (box / 2), snake[i].y + box);
+                    ctx.closePath();
+                }
+
+                // the outline
+                ctx.strokeStyle = '#666666';
+                ctx.stroke();
+
+                // the fill color
+                ctx.fillStyle = "rgba(48,52,105, 0.8)";
+                ctx.fill();            
+            } else{
+                // draw snake body                
+                ctx.fillStyle = "rgba(249, 202, 36,1.0)";
+                ctx.strokeStyle = "white";
+                ctx.lineWidth = 3;
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+                ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+            }
         }
         ctx.drawImage(apple, food.x, food.y, box, box);
 
@@ -109,135 +168,57 @@ document.addEventListener("DOMContentLoaded", function () {
            console.log("GAME OVER!");
            
             clearInterval(startGame);
-            // gameover();
+            setTimeout(() => {
+                gameover();
+            }, 500);
         }
-
 
         snake.unshift(newHead);        
     }   
 
-    
-    let startGame = setInterval(draw, 200);
+    console.log(level)    
+    let startGame = setInterval(draw, level);
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-    
-    // let gridContainer = $("#container");
-    // let snakeHead = document.querySelector("#snake");
-    // let snakeHead2= document.getElementById("snake");
-    // let snakeHead3 = $("#snake");
-    // console.log(snakeHead);
-    // console.log(snakeHead2);
-    // console.log(snakeHead3);
-    
-    // let boxSize;
-
-
-    // function drawBoxes(){
-    //     let groundSize = parseInt($("#container").css("height"));
-    //     let ratio = 700/groundSize;
-    //     boxSize = parseFloat(20 / ratio);
-    //     console.log(boxSize);
-        
-    //     let totalBoxes = ((groundSize * groundSize)/(boxSize * boxSize)).toFixed(0);
-    //     for (let i = 0; i < totalBoxes ; i++) {
-    //         let box = document.createElement("DIV")
-    //         if (i%2 == 0) {
-    //             box.className = "box dark";
-    //             box.id = "" + i;
-
-    //         } else{
-    //             box.className = "box light";
-    //             box.id = ""+ i;
-    //         }
-    //         box.style.height = boxSize;
-    //         box.style.width = boxSize;
-    //         document.querySelector("#container").appendChild(box);
-    //     }
-    //     drawSnake();
-    // }
-
-    // function drawSnake(){
-    //     //get snake head
-    //     snakeHead.style.height = boxSize.toFixed(4);
-    //     snakeHead.style.width = boxSize.toFixed(4);
-    //     // get center position
-    //     let center = document.getElementById("612");
-    //     let centerY = parseInt(center.offsetTop);
-    //     let centerX = parseInt(center.offsetLeft);
-    //     // give center position to snake
-    //     snakeHead.style.left = centerX ;
-    //     snakeHead.style.top = centerY ;
-        
-    //     setInterval(moveSnake, 1000);
-       
-
-    // }
-    
-    // let sqID = 612;
-
-
-    // function moveSnake(){  
-    //     function checkKey(e) {
-    //         console.log('checkKey');
-            
-
-    //         e = e || window.event;
-
-    //         if (e.keyCode === 38) {
-    //             // up arrow
-    //         }
-    //         else if (e.keyCode === 40) {
-    //             // down arrow
-    //         }
-    //         else if (e.keyCode === 37) {
-    //             // left arrow
-    //             //move left
-    //             sqID -= 1;
-    //             let center = $("#" + sqID)[0];
-    //             let centerX = parseInt(center.offsetLeft);
-    //             snakeHead.style.left = centerX;   
-    //             console.log('sqid = ' + sqID);
-    //             console.log('centerX = ' + centerX);         
-    //         }
-    //         else if (e.keyCode === 39) {
-    //             // right arrow
-    //             //move right
-    //             sqID += 1;
-    //             let center = $("#" + sqID)[0];
-    //             let centerX = parseInt(center.offsetLeft);
-    //             snakeHead.style.left = centerX; 
-    //             console.log('sqid = ' + sqID);
-    //             console.log('centerX = '+ centerX);
-                           
-    //         }
-
-    //     }
-    //     function uniKeyCode(event) {
-    //         var key = event.keyCode;
-    //         console.log('')
-    //     }
-    //     $("html").on("keypress", checkKey);
-    //     // $("body").on("keyup", checkKey);
-
-
-    // }
-
-    // drawBoxes();
-
-})
 function restart() {
     console.log("refresh");
-
     location.reload();
+
+}
+
+function showGame(){
+    //hide instructionCont
+    let instructionCont = document.getElementById("instructionCont")
+    instructionCont.style.display = "none";
+    //show gameContainer
+    let gameContainer = document.querySelector(".gameContainer");
+    gameContainer.style.display = "flex"
+    //show canvas 
+    canvas.style.display = "block"
+}
+
+function easy(){
+    level = 450;
+    console.log("clicked easy");
+    showGame();
+    game();    
+}
+function medium() {
+    level = 350;
+    console.log("clicked medium");
+    showGame();
+    game();
+} 
+function hard() {
+    level = 250;
+    console.log("clicked hard");
+    showGame();
+    game();
+} 
+function pro() {
+    level = 150;
+    console.log("clicked pro");
+    showGame();
+    game();
 }

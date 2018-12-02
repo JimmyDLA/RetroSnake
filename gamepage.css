@@ -2,9 +2,71 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
-.container{
+
+/* instuctions CSS */
+#instructionCont{
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Nova Flat', cursive;
+    height: 700px;
+}
+#directionCont{
+    display: flex;
+    flex-direction: row;
+    margin: -50px;
+}
+h2{
+    margin: 0;
+}
+#text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+#buttonCont{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 90%;
+
+}
+.button{
+    height: 60px;
+    width: 150px;
+    color: white;
+    border:none;
+    font-size: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 7px 21px 0px rgba(0,0,0,0.75);
+}
+
+#easy{
+    background-color: #4A90E2;
+}
+
+#medium{
+    background-color: #0EBD71;
+
+}
+
+#hard{
+    background-color: #E4D732;
+
+}
+
+#pro{
+    background-color: #D0021B;
+
+}
+
+/* game CSS */
+.gameContainer{
+    display: none;
     background-color: rgba(48, 51, 107,1.0);;
     border-radius: 10px;
     flex-direction: column;
@@ -14,7 +76,7 @@ body{
     color: white;
 }
 #score{
-    font-family: sans-serif
+    font-family: 'Nova Flat', cursive;
 }
 #gameoverCont{
     display: none;
