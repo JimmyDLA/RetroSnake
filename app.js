@@ -12,9 +12,9 @@ function game(){
     
     //add new image
     let ground = new Image();
-    let apple = new Image();
+    let egg = new Image();
     ground.src = "./public/checker board.png";
-    apple.src = "./public/egg.png";
+    egg.src = "./public/egg.png";
 
     //add new audio
     // let audio = new Audio();
@@ -134,7 +134,7 @@ function game(){
                 ctx.strokeRect(snake[i].x, snake[i].y, box, box);
             }
         }
-        ctx.drawImage(apple, food.x, food.y, box, box);
+        ctx.drawImage(egg, food.x, food.y, box, box);
 
         let snakeX = snake[0].x;
         let snakeY = snake[0].y;
