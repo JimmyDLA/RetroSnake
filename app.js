@@ -16,9 +16,24 @@ function game(){
     ground.src = "./public/checker board.png";
     egg.src = "./public/egg.png";
 
-    //add new audio
-    // let audio = new Audio();
-    // audio.src =  "./path"
+    //add new audio  
+    let eat = new Audio();
+    eat.src = "./public/audio/eat.mp3";
+
+    let turn = new Audio();
+    turn.src = "./public/audio/turn.mp3";
+    turn.volume = 0.5;
+
+    let wall = new Audio();
+    wall.src = "./public/audio/wall.mp3";
+
+    let overMusic = new Audio();
+    overMusic.src = "./public/audio/over.mp3";
+
+    let gameMusic = new Audio();
+    gameMusic.src = "./public/audio/game_music.mp3";
+    gameMusic.loop = true;
+    gameMusic.volume = 1;
 
     let box = 38;
     let snake = [];
@@ -37,12 +52,16 @@ function game(){
     function direction(e){
         if (e.keyCode == 37 && dir != "RIGHT") {
             dir = "LEFT";
+            turn.play();
         } else if (e.keyCode == 38 && dir != "DOWN") {
             dir = "UP";
+            turn.play();
         } else if (e.keyCode == 39 && dir != "LEFT") {
             dir = "RIGHT";
+            turn.play();
         } else if (e.keyCode == 40 && dir != "UP") {
             dir = "DOWN";
+            turn.play();
         }
     }
 
@@ -59,6 +78,7 @@ function game(){
     function gameover(){
         let gameoverAlert = document.getElementById("gameoverCont");
         gameoverAlert.style.display= "block";
+        overMusic.play();
     }
     
     function restart(){
@@ -70,6 +90,7 @@ function game(){
 
     function draw() {
         console.log("draw");
+        gameMusic.play();
         
         // ctx.drawImage(src, x, y, width, height);
         ctx.drawImage(ground, 0, 0, 608, 608);
@@ -146,6 +167,7 @@ function game(){
         
         // if snake head has same X,Y as food, POINT++ 
         if (snakeX == food.x && snakeY == food.y) {
+            eat.play();
             score ++;
             scoreText.innerHTML = "SCORE: " + score;
 
@@ -165,8 +187,9 @@ function game(){
 
         // collision detection
         if (snakeX < 0 || snakeX > box * 15 || snakeY < 0 || snakeY > box * 15 || collision(newHead, snake)) {
-           console.log("GAME OVER!");
-           
+            console.log("GAME OVER!");
+            wall.play();
+            gameMusic.pause();
             clearInterval(startGame);
             setTimeout(() => {
                 gameover();
