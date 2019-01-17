@@ -19,16 +19,18 @@ function game(){
     //add new audio  
     let eat = new Audio();
     eat.src = "./public/audio/eat.mp3";
+    eat.volume = 0.1;
 
     let turn = new Audio();
     turn.src = "./public/audio/turn.mp3";
-    turn.volume = 0.5;
+    turn.volume = 0.1;
 
     let wall = new Audio();
     wall.src = "./public/audio/wall.mp3";
 
     let overMusic = new Audio();
     overMusic.src = "./public/audio/over.mp3";
+    overMusic.volume = 0.3;
 
     let gameMusic = new Audio();
     gameMusic.src = "./public/audio/game_music.mp3";
